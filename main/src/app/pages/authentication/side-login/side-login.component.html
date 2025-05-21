@@ -9,29 +9,36 @@
             </a>
           </div>
 
-          <form class="m-t-30">
-            <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Username</mat-label>
+          <form class="m-t-30" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Correo electrónico</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput />
+              <input matInput placeholder="email@ejemplo.com" formControlName="email" type="email" />
+              <mat-error *ngIf="f.email?.hasError('required')">El correo es obligatorio</mat-error>
+              <mat-error *ngIf="f.email?.hasError('email')">Correo inválido</mat-error>
             </mat-form-field>
-            <!-- password -->
-            <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Password</mat-label>
+
+            <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Contraseña</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput type="password" />
+              <input matInput type="password" placeholder="••••••••" formControlName="password" />
+              <mat-error *ngIf="f.password?.hasError('required')">La contraseña es obligatoria</mat-error>
             </mat-form-field>
 
             <div class="d-flex align-items-center m-b-12">
               <mat-checkbox color="primary">Recordar</mat-checkbox>
-              <a [routerLink]="['/']" class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14">Credenciales Perdidas?</a>
-            </div> 
-            <a [routerLink]="['/']" mat-flat-button color="primary" class="w-100">
+              <a [routerLink]="['/']" class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14">
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+
+            <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="form.invalid">
               Iniciar Sesión
-            </a>
-            <!-- input -->
+            </button>
           </form>
-          <span class="d-block f-w-500 text-center m-t-24">Sin Credenciales?
+
+          <span class="d-block f-w-500 text-center m-t-24">¿No tienes cuenta?
             <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
-              Crear cuenta</a>
+              Crear cuenta
+            </a>
           </span>
         </mat-card-content>
       </mat-card>
