@@ -2,11 +2,11 @@ import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
   {
-    navCap: 'Home',
+    navCap: 'Principal',
   },
   {
-    displayName: 'Principal',
-    iconName: 'layout-grid-add',
+    displayName: 'Resumen',
+    iconName: 'chart-bar',
     route: '/dashboard',
   },
   {
@@ -17,6 +17,11 @@ export const navItems: NavItem[] = [
 
   {
     navCap: 'Apps',
+  },
+  {
+    displayName: 'Plataformas',
+    iconName: 'binary-tree-2',
+    route: '/ui-components/platform/forms-create',
   },
   {
     displayName: 'Chat',
@@ -93,7 +98,7 @@ export const navItems: NavItem[] = [
     iconName: 'table',
     route: '/ui-components/tables',
   },
- 
+
   {
     navCap: 'Extra',
   },
@@ -107,7 +112,7 @@ export const navItems: NavItem[] = [
     iconName: 'brand-dribbble',
     route: '/extra/sample-page',
   },
-  
+
   {
     navCap: 'Auth',
   },

@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthService } from '../auth.service';
+import { CommonModule } from '@angular/common'; 
 import { MaterialModule } from 'src/app/material.module';
+import { AuthService } from 'src/app/services/authentication/auth.service';
 
 @Component({
   selector: 'app-side-login',
   standalone: true,
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
   templateUrl: './side-login.component.html',
 })
 export class AppSideLoginComponent {
@@ -18,7 +19,9 @@ export class AppSideLoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {
+     //localStorage.setItem('token', '');
+  }
 
   get f() {
     return this.form.controls;
@@ -34,7 +37,7 @@ export class AppSideLoginComponent {
 
     this.authService.login(credentials).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.token);
+        localStorage.setItem('token', response.accessToken);
         this.router.navigate(['/dashboard']);
       },
       error: (error: HttpErrorResponse) => {
