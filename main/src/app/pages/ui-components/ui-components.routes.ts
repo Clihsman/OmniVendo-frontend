@@ -9,6 +9,7 @@ import { AppTooltipsComponent } from './tooltips/tooltips.component';
 import { AppFormsComponent } from './forms/forms.component';
 import { AppTablesComponent } from './tables/tables.component';
 import { AppFormsPlatformComponent } from './platform/forms-create/form-platform.component';
+import { AppChatComponent } from './chat/chat.component';
 
 
 export const UiComponentsRoutes: Routes = [
@@ -42,6 +43,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'platform/forms-create',
         component: AppFormsPlatformComponent,
+      },
+            {
+        path: 'chat',
+        component: AppChatComponent,
       },
       {
         path: 'tables',

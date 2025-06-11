@@ -1,0 +1,52 @@
+<div class="chat-container mat-elevation-z2">
+  <!-- Sidebar de contactos -->
+  <div class="chat-sidebar">
+    <div class="user-info">
+
+        <h3 class="user-name">Chat Global</h3>
+        <p class="user-email">info.com</p>
+    </div>
+
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput placeholder="Search Contacts">
+    </mat-form-field>
+
+
+    <div class="contact-list">
+      <div *ngFor="let contact of contacts" class="contact" [class.active]="contact === selectedContact"
+        (click)="selectContact(contact)">
+        <mat-icon class="avatar-icon">person</mat-icon>
+        <div>
+          <h4>{{ contact.name }}</h4>
+          <p class="preview">{{ contact.messagePreview }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Área del chat -->
+  <div class="chat-content">
+    <div class="chat-header">
+      <mat-icon class="avatar-icon" color="accent">person</mat-icon>
+      <h3>{{ selectedContact?.name }}</h3>
+    </div>
+
+    <div class="chat-messages" #scrollContainer>
+      <div *ngFor="let msg of messages" [ngClass]="{'message-right': msg.mine, 'message-left': !msg.mine}"
+        class="message-bubble">
+        <span>{{ msg.text }}</span>
+        <div class="timestamp">{{ msg.timestamp | date: 'mediumDate' }}</div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <mat-form-field class="input-full" appearance="fill">
+        <input matInput [(ngModel)]="newMsg" placeholder="Send message" (keyup.enter)="sendMessage()">
+      </mat-form-field>
+      <button mat-icon-button color="primary" (click)="sendMessage()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

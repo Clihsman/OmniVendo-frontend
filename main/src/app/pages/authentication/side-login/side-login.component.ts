@@ -20,7 +20,7 @@ export class AppSideLoginComponent {
   });
 
   constructor(private router: Router, private authService: AuthService) {
-     //localStorage.setItem('token', '');
+     localStorage.setItem('token', '');
   }
 
   get f() {
